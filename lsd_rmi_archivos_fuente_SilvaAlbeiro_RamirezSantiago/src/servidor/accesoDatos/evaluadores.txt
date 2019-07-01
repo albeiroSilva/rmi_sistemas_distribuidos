@@ -1,0 +1,4 @@
+100 carlos_cordoba 1 12/12/12 carlos_cordoba 1 12/12/12 
+101 carlos_cordoba 1 4 carlos_cordoba 1 4 
+102 carlos_cordoba 1 3 carlos_cordoba 1 3 
+107 lucas_silva 1 12/12/12 ana_maria 1 12/12/12 

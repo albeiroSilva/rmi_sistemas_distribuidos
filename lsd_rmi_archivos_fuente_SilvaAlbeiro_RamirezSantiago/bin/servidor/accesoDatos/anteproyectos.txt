@@ -1,0 +1,9 @@
+100 Apicultura Presencial maria_ibarra maira_perez carlos_cobos martha_mendoza 12/12/12 12/12/12 1 2 1
+101 andromeda nocturno pepitp armando casas perez 12/24/07 12/24/07 2 2 1
+102 metalurgia presencial sandro sandra director coDirector 12/12/12 12/12/12 1 2 1
+103 moraCastilla diaria maria marlon carlos siler 30-06-2019 30-06-2019 1 4 1
+104 sitema_control nocturna franci nayara pedro marco 01-08-2019 01-08-2019 1 4 1
+105 cericultura TI maria veronica lucas sergio 12/12/12 12/12/12 1 4 1
+106 metodologías_ágiles TI marlon karina jairo wilmar 12/12/12 12/12/12 2 2 0
+107 mineria_de_datos PP daniela_gomez sebastian_chavez martha_almanza grass_ramirez 21/12/2019 21/12/2019 2 3 1
+108 realidad_virtual TI cesar paula daniel wilson 22/02/2019 22/02/2019 2 1 0
