@@ -20,6 +20,7 @@ public class ClsAnteproyectoDAOImpl implements IntAnteproyectoDAO{
     
     private IntFicheroDAO objFichero;
     private IntEvaluadorDAO objEvaluadorDAO;
+    private String archivoAnteproyecto = "servidor\\accesoDatos\\anteproyectos";
     public ClsAnteproyectoDAOImpl() {
         objFichero = new ClsFicheroDAOImpl();
         objEvaluadorDAO = new ClsEvaluadorDAOImpl();
@@ -32,11 +33,11 @@ public class ClsAnteproyectoDAOImpl implements IntAnteproyectoDAO{
         
         
         boolean bandera = false;
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
+      
         String cadena = generarCadenaAnteproyecto(objAnteproyecto);
         
         
-        if(objFichero.AgregarFila(cadena, archivo)){
+        if(objFichero.AgregarFila(cadena, archivoAnteproyecto)){
             bandera = true;
         }
         return bandera;
@@ -56,20 +57,48 @@ public class ClsAnteproyectoDAOImpl implements IntAnteproyectoDAO{
         String estado = Integer.toString(objAnteproyecto.getEstado());
         String numeroRevision = Integer.toString(objAnteproyecto.getNumeroRevision());
         
-        String cadena = ""+codigo+" "+titulo+" "+modalidad+" "+estudiante_1+" "+estudiante_2+" "+director+" "+co_director+" "+fechaIngreso+" "+fechaAprobacion+" "+concepto+" "+estado+" "+numeroRevision+""; 
+        String tituloA = "";
+        String [] datos = titulo.split(" ");
+        for (int i = 0; i < datos.length; i++) {
+            tituloA = tituloA+""+datos[i]+"_";
+        }
+        String estudiante1 = "";
+        String [] datos1 = estudiante_1.split(" ");
+        for (int i = 0; i < datos1.length; i++) {
+            estudiante1 = estudiante1+""+datos1[i]+"_";
+        }
+        
+        String estudiante2 = "";
+        String [] datos2 = estudiante_2.split(" ");
+        for (int i = 0; i < datos2.length; i++) {
+            estudiante2 = estudiante2+""+datos2[i]+"_";
+        }
+        
+        String directorA = "";
+        String [] datos3 = director.split(" ");
+        for (int i = 0; i < datos3.length; i++) {
+            directorA = directorA+""+datos3[i]+"_";
+        }
+        
+        String codirectorA = "";
+        String [] datos4 = co_director.split(" ");
+        for (int i = 0; i < datos3.length; i++) {
+            codirectorA = codirectorA+""+datos4[i]+"_";
+        }
+        
+        String cadena = ""+codigo+" "+tituloA+" "+modalidad+" "+estudiante1+" "+estudiante2+" "+directorA+" "+codirectorA+" "+fechaIngreso+" "+fechaAprobacion+" "+concepto+" "+estado+" "+numeroRevision+""; 
         return cadena;
     }
     
     
     @Override
     public ArrayList<AnteproyectoDTO> listarAnteproyectos()  {
-        
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
+
 
         ArrayList anteproyectos = new ArrayList();
         
         ArrayList<AnteproyectoDTO> listaAnteproyectos = new ArrayList<AnteproyectoDTO>();
-        anteproyectos = objFichero.cargarDatos(archivo);
+        anteproyectos = objFichero.cargarDatos(archivoAnteproyecto);
         
         AnteproyectoDTO objAnteproyecto = null;
         for (int i = 0; i < anteproyectos.size(); i++) {
@@ -85,8 +114,8 @@ public class ClsAnteproyectoDAOImpl implements IntAnteproyectoDAO{
     @Override
     public AnteproyectoDTO buscarAnteproyecto(int codigo)  {
         
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
-        String anteproyecto = objFichero.buscarFila(codigo, archivo);
+
+        String anteproyecto = objFichero.buscarFila(codigo, archivoAnteproyecto);
         AnteproyectoDTO objAnteproyecto = null;
         if (anteproyecto == null) {
             objAnteproyecto = null;
@@ -100,8 +129,8 @@ public class ClsAnteproyectoDAOImpl implements IntAnteproyectoDAO{
 
     @Override
     public long numeroFilas() {
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
-        long numeroDeFilas = objFichero.contarFilas(archivo);
+     
+        long numeroDeFilas = objFichero.contarFilas(archivoAnteproyecto);
         return numeroDeFilas;
     }
 
@@ -109,7 +138,7 @@ public class ClsAnteproyectoDAOImpl implements IntAnteproyectoDAO{
     public boolean cambiarConceptoAnteproyecto(int codigo ) {
         
         boolean bandera = false;
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
+       
         ArrayList<EvaluadoresDTO> listaEvaluadores = objEvaluadorDAO.listarEvaluadores();
         ArrayList<AnteproyectoDTO> listaAnteproyectos = listarAnteproyectos();
        
@@ -143,7 +172,7 @@ public class ClsAnteproyectoDAOImpl implements IntAnteproyectoDAO{
             }
         
         
-        objFichero.borrarArchivo(archivo);
+        objFichero.borrarArchivo(archivoAnteproyecto);
 
         for (int i = 0; i < listaAnteproyectos.size(); i++) {
             registrarAnteproyecto(listaAnteproyectos.get(i));

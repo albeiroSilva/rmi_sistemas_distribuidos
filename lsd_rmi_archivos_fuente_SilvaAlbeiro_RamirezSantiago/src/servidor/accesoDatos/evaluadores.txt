@@ -2,3 +2,6 @@
 101 carlos_cordoba 1 4 carlos_cordoba 1 4 
 102 carlos_cordoba 1 3 carlos_cordoba 1 3 
 107 lucas_silva 1 12/12/12 ana_maria 1 12/12/12 
+108 lucas_silva 2 12 ana_maria 1 12 
+106 laura_albear 2 12 edivar_silva 2 12 
+110 raul_rodriguez_ 1 12/12/12 marco_ceron_ 1 12/12/12 

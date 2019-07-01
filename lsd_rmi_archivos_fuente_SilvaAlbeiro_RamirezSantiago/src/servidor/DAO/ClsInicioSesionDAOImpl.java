@@ -19,17 +19,16 @@ import servidor.DTO.UsuarioDTO;
 public class ClsInicioSesionDAOImpl implements IntInicioDeSesionDAO {
 
     private IntFicheroDAO objFichero;
-
+    private String archivoUsuario ="servidor\\accesoDatos\\usuarios";
     public ClsInicioSesionDAOImpl() {
         objFichero = new ClsFicheroDAOImpl();
     }
 
     @Override
     public UsuarioDTO verificarCredenciales(String usuario, String contrasenia) {
-        String archivo = "servidor\\accesoDatos\\usuarios";
         UsuarioDTO objUsuario = null;
         ArrayList filas = new ArrayList();
-        filas = objFichero.cargarDatos(archivo);
+        filas = objFichero.cargarDatos(archivoUsuario);
         for (int i = 0; i < filas.size(); i++) {
             String dato = (String) filas.get(i);
             String[] datos = dato.split(" ");

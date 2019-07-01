@@ -16,7 +16,7 @@ public interface IntFicheroDAO {
     
     public boolean AgregarFila(String cadena, String archivo);
     public boolean ExisteArchivo(String nombreArchivo);
-    public ArrayList cargarDatos(String archivo);
+    public ArrayList<String> cargarDatos(String archivo);
     public String buscarFila(int numeroFila, String archivo);
     public long contarFilas(String archivo);
     public boolean reemplazarFila(String fila, String filaNueva,String archivo);

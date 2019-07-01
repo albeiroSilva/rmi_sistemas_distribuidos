@@ -32,15 +32,19 @@ public class ClsBuscarAnteproyecto extends javax.swing.JFrame {
         this.objRemoto = objRemoto;
         llenarComboBox5();
     }
-     public void llenarComboBox5() throws RemoteException {        
+     public void llenarComboBox5() throws RemoteException {
         ArrayList<AnteproyectoDTO> listaAnteproyectos = this.objRemoto.listarAnteproyectos();
-        for (int i = 0; i < listaAnteproyectos.size(); i++) {
-            
-            jComboBox1.addItem(Integer.toString(listaAnteproyectos.get(i).getCodigo()));
-            
+        if (listaAnteproyectos.size() != 0) {
+            for (int i = 0; i < listaAnteproyectos.size(); i++) {
+
+                jComboBox1.addItem(Integer.toString(listaAnteproyectos.get(i).getCodigo()));
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "no hay anteproyectos");
         }
     }
-     
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,38 +204,6 @@ public class ClsBuscarAnteproyecto extends javax.swing.JFrame {
         }else {
             
             limpiarArea();
-//            String nombreColumnas [] = {"codigo","titulo","estudiante_1","estudiante_2","director", "concepto", "estado", "evaluador_1", "Evaluador_2"};
-//             String data[][] =  new String[1][9];
-//            data[0][0] = Integer.toString(objAnteproyecto.getCodigo());
-//            data[0][1] = objAnteproyecto.getTitulo();
-//            data[0][2] = objAnteproyecto.getEstudiante_1();
-//            data[0][3] = objAnteproyecto.getEstudiante_2();
-//            data[0][4] = objAnteproyecto.getDirector();
-//             if (objAnteproyecto.getConcepto() == 1) {
-//                data[0][5] = "Aprobado";
-//            }else if (objAnteproyecto.getConcepto() == 2) {
-//                data[0][5] = "No Aprobado";
-//            }
-//             if (objAnteproyecto.getEstado() == 1) {
-//                data[0][6] = "Sin Asignacion";
-//            }else if (objAnteproyecto.getEstado() == 2) {
-//                data[0][6] = "Evaluadores Asignados";
-//            }else if (objAnteproyecto.getEstado() == 3) {
-//                data[0][6] = "En Revisión";
-//            }else if (objAnteproyecto.getEstado() == 4) {
-//                data[0][6] = "Revisado";
-//            }
-//            
-//             if (objEvaluador == 
-//            null) {
-//                data[0][7] = "Sin Evaluador";
-//                data[0][8] = "Sin Evaluador";
-//            }else {
-//                data[0][7] = objEvaluador.getEvaluador_1();
-//                data[0][8] = objEvaluador.getEvaluador_2();
-//              
-//            }
-//            jTable1.setModel(new DefaultTableModel(data, nombreColumnas));
             
             
             jTextArea1.append("Codigo: "+Integer.toString(objAnteproyecto.getCodigo()));

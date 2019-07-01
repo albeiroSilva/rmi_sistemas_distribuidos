@@ -7,3 +7,5 @@ alexander 321 alexanderS 123 EstudianteDirector
 lucas_silva 4567 lucasS 321 Evaluador
 ana_maria 9876 anaB 12345 Evaluador
 juliana_arango 12321 julianaA 1234 EstudianteDirector
+camila_narvaes_ 971227 camilaN 123 Evaluador
+sofia_buendia_ 765 sofiaB 123 EstudianteDirector

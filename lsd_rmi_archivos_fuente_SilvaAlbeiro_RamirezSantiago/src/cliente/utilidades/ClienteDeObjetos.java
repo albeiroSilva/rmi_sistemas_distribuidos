@@ -21,14 +21,14 @@ import servidor.DAO.IntInicioDeSesionDAO;
  *
  * @author USERPC
  */
-public class ClsClienteObjetos extends javax.swing.JFrame {
+public class ClienteDeObjetos extends javax.swing.JFrame {
 
     /**
      * Creates new form ClsClienteObjetos
      */
     private   GestionAnteproyectosInt objRemoto;
     private ClsLogin objLogin;
-    public ClsClienteObjetos() throws RemoteException {
+    public ClienteDeObjetos() throws RemoteException {
         initComponents();
       
     }
@@ -175,9 +175,9 @@ public class ClsClienteObjetos extends javax.swing.JFrame {
         try {
             objLogin = new ClsLogin(objRemoto);
             objLogin.setVisible(true);
-            new ClsClienteObjetos().setVisible(false);
+            new ClienteDeObjetos().setVisible(false);
         } catch (RemoteException ex) {
-            Logger.getLogger(ClsClienteObjetos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDeObjetos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         this.setVisible(false);
@@ -206,23 +206,24 @@ public class ClsClienteObjetos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClsClienteObjetos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteDeObjetos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClsClienteObjetos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteDeObjetos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClsClienteObjetos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteDeObjetos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClsClienteObjetos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteDeObjetos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ClsClienteObjetos().setVisible(true);
+                    new ClienteDeObjetos().setVisible(true);
                 } catch (RemoteException ex) {
-                    Logger.getLogger(ClsClienteObjetos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ClienteDeObjetos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

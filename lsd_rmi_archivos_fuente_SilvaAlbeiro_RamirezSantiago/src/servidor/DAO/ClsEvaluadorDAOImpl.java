@@ -20,7 +20,8 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
     private IntFicheroDAO objFichero;
     private IntUsuarioDAO objUsuario;
     private IntRecursosCompartidos ObjRecursos;
-    
+    private String archivoEvaluador = "servidor\\accesoDatos\\evaluadores";
+    private String archivoAnteproyecto = "servidor\\accesoDatos\\anteproyectos";
     public ClsEvaluadorDAOImpl() {
         objFichero = new ClsFicheroDAOImpl();
         objUsuario = new ClsUsuarioDAOImpl();
@@ -33,7 +34,6 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
 
         int estado1 = 1;
         ArrayList<EvaluadoresDTO> listaEvaluadores = listarEvaluadores();
-        String archivoEvaluadores = "servidor\\accesoDatos\\evaluadores";
 
             for (int i = 0; i < listaEvaluadores.size(); i++) {
                 if (codigo == listaEvaluadores.get(i).getCodigo()) {
@@ -45,7 +45,7 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
             String cadena = generarCadenaEvaluador(objEvaluador);
 
             if (estado1 == 1) {
-                if (objFichero.AgregarFila(cadena, archivoEvaluadores)) {
+                if (objFichero.AgregarFila(cadena, archivoEvaluador)) {
 
                     bandera = true;
 
@@ -78,10 +78,8 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
     public EvaluadoresDTO buscarEvaluador(int codigo)  {
 
         String parCodigo = Integer.toString(codigo);
-        String archivo = "servidor\\accesoDatos\\evaluadores";
         EvaluadoresDTO objEvaluador = null;
-        ArrayList filas = new ArrayList();
-        filas = objFichero.cargarDatos(archivo);
+        ArrayList<String> filas  = objFichero.cargarDatos(archivoEvaluador);
         for (int i = 0; i < filas.size(); i++) {
             String dato = (String) filas.get(i);
             String[] datos = dato.split(" ");
@@ -95,12 +93,11 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
 
     @Override
     public ArrayList<EvaluadoresDTO> listarEvaluadores()  {
-        String archivo = "servidor\\accesoDatos\\evaluadores";
 
         ArrayList evaluadores = new ArrayList();
 
         ArrayList<EvaluadoresDTO> listaEvaluadores = new ArrayList<EvaluadoresDTO>();
-        evaluadores = objFichero.cargarDatos(archivo);
+        evaluadores = objFichero.cargarDatos(archivoEvaluador);
 
         EvaluadoresDTO objAnteproyecto = null;
         for (int i = 0; i < evaluadores.size(); i++) {
@@ -113,8 +110,7 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
         return listaEvaluadores;
     }
     public long numeroFilas()  {
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
-        long numeroDeFilas = objFichero.contarFilas(archivo);
+        long numeroDeFilas = objFichero.contarFilas(archivoAnteproyecto);
         return numeroDeFilas;
     }
     @Override
@@ -122,8 +118,6 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
         
         //realizar validación para que el evaluador sea evaluador de ese anteproyecto
         boolean bandera = false;
-       
-        String archivo = "servidor\\accesoDatos\\evaluadores";
 
         ArrayList<EvaluadoresDTO> listaEvaluadores = listarEvaluadores();
         ArrayList<UsuarioDTO> listaUsuarios = objUsuario.listarUsuarios();
@@ -170,7 +164,7 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
                 }
             }
         
-        objFichero.borrarArchivo(archivo);
+        objFichero.borrarArchivo(archivoEvaluador);
 
         for (int i = 0; i < listaEvaluadores.size(); i++) {
             registrarEvaluador(listaEvaluadores.get(i));
@@ -185,10 +179,9 @@ public class ClsEvaluadorDAOImpl implements IntEvaluadorDAO {
     @Override
     public boolean registrarEvaluador(EvaluadoresDTO objEvaluador)  {
         boolean bandera = false;
-        String archivoEvaluadores = "servidor\\accesoDatos\\evaluadores";
 
         String cadena = generarCadenaEvaluador(objEvaluador);
-        if (objFichero.AgregarFila(cadena, archivoEvaluadores)) {
+        if (objFichero.AgregarFila(cadena, archivoEvaluador)) {
             bandera = true;
         }
 

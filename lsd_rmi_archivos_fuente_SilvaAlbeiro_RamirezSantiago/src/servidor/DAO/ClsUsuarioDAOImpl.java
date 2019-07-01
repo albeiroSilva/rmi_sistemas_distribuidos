@@ -17,7 +17,8 @@ import servidor.DTO.UsuariosIngresadosDTO;
 public class ClsUsuarioDAOImpl implements IntUsuarioDAO{
 
     private IntFicheroDAO objFichero;
-    
+    private String archivoUsuarios = "servidor\\accesoDatos\\usuarios";
+    private String archivoUsuariosIngresados = "servidor\\accesoDatos\\usuariosIngresados";
     public ClsUsuarioDAOImpl() {
         objFichero = new ClsFicheroDAOImpl();
     }
@@ -28,7 +29,6 @@ public class ClsUsuarioDAOImpl implements IntUsuarioDAO{
     public boolean registrarUsuario(UsuarioDTO objUsuario) {
 
         boolean bandera = false;
-        String archivo = "servidor\\accesoDatos\\usuarios";
         ArrayList<UsuarioDTO> listaUsuarios = listarUsuarios();
         String cadena = generarCadenaUsuario(objUsuario);
         int estado = 0;
@@ -40,7 +40,7 @@ public class ClsUsuarioDAOImpl implements IntUsuarioDAO{
             }
         }
         if (estado == 1) {
-            if (objFichero.AgregarFila(cadena, archivo)) {
+            if (objFichero.AgregarFila(cadena, archivoUsuarios)) {
                     bandera = true;
                 }
         }
@@ -56,7 +56,13 @@ public class ClsUsuarioDAOImpl implements IntUsuarioDAO{
         String contrasenia = objUsuario.getContrasenia();
         String tipoUsuario = objUsuario.getTipoUsuario();
         
-        String cadena = ""+nombres+" "+identificacion+" "+usuarioUnicauca+" "+contrasenia+" "+tipoUsuario+""; 
+        String nombreA = "";
+        String [] datos = nombres.split(" ");
+        for (int i = 0; i < datos.length; i++) {
+            nombreA = nombreA+""+datos[i]+"_";
+        }
+        
+        String cadena = ""+nombreA+" "+identificacion+" "+usuarioUnicauca+" "+contrasenia+" "+tipoUsuario+""; 
         return cadena;
     }
 
@@ -64,10 +70,9 @@ public class ClsUsuarioDAOImpl implements IntUsuarioDAO{
     public boolean guardarCredencialesUsuario(String usuario, String contrasenia)  {
         
         boolean bandera = false;
-        String archivo = "servidor\\accesoDatos\\usuariosIngresados";
 
         String cadena = ""+usuario+" "+contrasenia+"";
-        if (objFichero.AgregarFila(cadena, archivo)) {
+        if (objFichero.AgregarFila(cadena, archivoUsuariosIngresados)) {
             bandera = true;
         }
         return  bandera;
@@ -75,12 +80,11 @@ public class ClsUsuarioDAOImpl implements IntUsuarioDAO{
 
     @Override
     public ArrayList<UsuarioDTO> listarUsuarios()  {
-        String archivo = "servidor\\accesoDatos\\usuarios";
 
         ArrayList usuarios = new ArrayList();
         
         ArrayList<UsuarioDTO> listaUsuarios = new ArrayList<UsuarioDTO>();
-        usuarios = objFichero.cargarDatos(archivo);
+        usuarios = objFichero.cargarDatos(archivoUsuarios);
         
         UsuarioDTO objUsuario = null;
         for (int i = 0; i < usuarios.size(); i++) {
@@ -95,12 +99,11 @@ public class ClsUsuarioDAOImpl implements IntUsuarioDAO{
 
     @Override
     public ArrayList<UsuariosIngresadosDTO> listarUsuariosIngresados()  {
-        String archivo = "servidor\\accesoDatos\\usuariosIngresados";
 
         ArrayList usuariosIngresados = new ArrayList();
         
         ArrayList<UsuariosIngresadosDTO> listaUsuariosIngresados = new ArrayList<UsuariosIngresadosDTO>();
-        usuariosIngresados = objFichero.cargarDatos(archivo);
+        usuariosIngresados = objFichero.cargarDatos(archivoUsuariosIngresados);
         
         UsuariosIngresadosDTO objUsuario = null;
         for (int i = 0; i < usuariosIngresados.size(); i++) {

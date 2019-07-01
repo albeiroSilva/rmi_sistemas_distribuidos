@@ -64,8 +64,8 @@ public class ClsFicheroDAOImpl implements IntFicheroDAO{
     
 
     @Override
-    public ArrayList cargarDatos( String archivo) {
-        ArrayList varTuplas = new ArrayList();
+    public ArrayList<String> cargarDatos( String archivo) {
+        ArrayList<String> varTuplas = new ArrayList<String>();
         try{
             if (ExisteArchivo(archivo)) {
                

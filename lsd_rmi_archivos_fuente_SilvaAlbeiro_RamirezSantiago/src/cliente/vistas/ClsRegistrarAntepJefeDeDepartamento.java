@@ -160,6 +160,7 @@ public class ClsRegistrarAntepJefeDeDepartamento extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setBackground(new java.awt.Color(51, 255, 0));
         jButton1.setText("ACEPTAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +168,7 @@ public class ClsRegistrarAntepJefeDeDepartamento extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 51, 51));
         jButton2.setText("ATRÁS");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,7 +240,7 @@ public class ClsRegistrarAntepJefeDeDepartamento extends javax.swing.JFrame {
         String fechaIngreso = jTextField2.getText();
 
         long numeroDeFilas = objRemoto.numeroFilas();
-        System.out.println("numero deeeee efilas: " + numeroDeFilas);
+        
         int codigo = (int) (99 + 1 + numeroDeFilas);
 
         if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jTextField5.getText().equals("") || jTextField6.getText().equals("")) {

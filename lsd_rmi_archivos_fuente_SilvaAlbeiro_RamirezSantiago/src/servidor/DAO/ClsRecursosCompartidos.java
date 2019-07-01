@@ -15,7 +15,7 @@ import servidor.DTO.AnteproyectoDTO;
 public class ClsRecursosCompartidos implements IntRecursosCompartidos{
 
     private IntFicheroDAO objFichero;
-    
+    private String archivoAnteproyecto = "servidor\\accesoDatos\\anteproyectos";
     public ClsRecursosCompartidos() {
         objFichero = new ClsFicheroDAOImpl();
     }
@@ -23,7 +23,6 @@ public class ClsRecursosCompartidos implements IntRecursosCompartidos{
 
     @Override
     public void cambiarNumeroDeRevision(int codigo) {
-         String archivo = "servidor\\accesoDatos\\anteproyectos";
 
        int numeroRevision = 0;
         ArrayList<AnteproyectoDTO> listaAnteproyectos = listarAnteproyectos();
@@ -33,7 +32,7 @@ public class ClsRecursosCompartidos implements IntRecursosCompartidos{
             }
         }
 
-        objFichero.borrarArchivo(archivo);
+        objFichero.borrarArchivo(archivoAnteproyecto);
 
         for (int i = 0; i < listaAnteproyectos.size(); i++) {
             registrarAnteproyecto(listaAnteproyectos.get(i));
@@ -45,9 +44,6 @@ public class ClsRecursosCompartidos implements IntRecursosCompartidos{
     @Override
     public void cambiarEstadoAnteproyecto(int codigo) {
         
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
-
-       
         ArrayList<AnteproyectoDTO> listaAnteproyectos = listarAnteproyectos();
         for (int i = 0; i < listaAnteproyectos.size(); i++) {
             if (listaAnteproyectos.get(i).getCodigo() == codigo) {
@@ -55,7 +51,7 @@ public class ClsRecursosCompartidos implements IntRecursosCompartidos{
             }
         }
 
-        objFichero.borrarArchivo(archivo);
+        objFichero.borrarArchivo(archivoAnteproyecto);
 
         for (int i = 0; i < listaAnteproyectos.size(); i++) {
             registrarAnteproyecto(listaAnteproyectos.get(i));
@@ -67,11 +63,10 @@ public class ClsRecursosCompartidos implements IntRecursosCompartidos{
         
         
         boolean bandera = false;
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
         String cadena = generarCadenaAnteproyecto(objAnteproyecto);
         
         
-        if(objFichero.AgregarFila(cadena, archivo)){
+        if(objFichero.AgregarFila(cadena, archivoAnteproyecto)){
             bandera = true;
         }
         return bandera;
@@ -95,12 +90,11 @@ public class ClsRecursosCompartidos implements IntRecursosCompartidos{
         return cadena;
     }
     public ArrayList<AnteproyectoDTO> listarAnteproyectos()  {
-        String archivo = "servidor\\accesoDatos\\anteproyectos";
 
         ArrayList anteproyectos = new ArrayList();
         
         ArrayList<AnteproyectoDTO> listaAnteproyectos = new ArrayList<AnteproyectoDTO>();
-        anteproyectos = objFichero.cargarDatos(archivo);
+        anteproyectos = objFichero.cargarDatos(archivoAnteproyecto);
         
         AnteproyectoDTO objAnteproyecto = null;
         for (int i = 0; i < anteproyectos.size(); i++) {
@@ -115,9 +109,7 @@ public class ClsRecursosCompartidos implements IntRecursosCompartidos{
 
     @Override
     public void cambiarEstadoAnteproyectoDos(int codigo) {
-         String archivo = "servidor\\accesoDatos\\anteproyectos";
 
-       
         ArrayList<AnteproyectoDTO> listaAnteproyectos = listarAnteproyectos();
         for (int i = 0; i < listaAnteproyectos.size(); i++) {
             if (listaAnteproyectos.get(i).getCodigo() == codigo) {
@@ -131,7 +123,7 @@ public class ClsRecursosCompartidos implements IntRecursosCompartidos{
             }
         }
 
-        objFichero.borrarArchivo(archivo);
+        objFichero.borrarArchivo(archivoAnteproyecto);
 
         for (int i = 0; i < listaAnteproyectos.size(); i++) {
             registrarAnteproyecto(listaAnteproyectos.get(i));
